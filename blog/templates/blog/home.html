@@ -1,0 +1,17 @@
+{% extends 'index.html' %}
+{% block content %}
+<h1>Home page</h1>
+    <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Amet a ex exercitationem! Ullam, perspiciatis? Libero, fuga quibusdam harum distinctio dolorem doloremque id iste, autem impedit ea minus eveniet quidem quo voluptatibus iure quos voluptas consectetur. Ipsum voluptatibus quasi error ipsam.</p>
+    
+    
+    <div>
+        {% for stor in story %}
+        <a href="profile/{{stor.id}}">
+            <figure style="width: 20%; text-align:justify">
+                <legend style="font-size: 30px;">{{stor.id}}:{{stor.title}}</legend>
+            </figure>
+        </a>
+        {% endfor %}
+    </div>
+
+    {% endblock %}
