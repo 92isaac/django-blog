@@ -7,13 +7,8 @@
             <div class="container px-4 px-lg-5">
                 <div class="row gx-4 gx-lg-5 justify-content-center">
                     <div class="col-md-10 col-lg-8 col-xl-7">
-                        
-                        <div class="post-heads">
-                            <img src="./images/Mason Mount.png" alt="dp" class="post-head-img">
-                            <p></p>
-                        </div>
                         <div class="post-det" style="text-align: justify;">
-                            <img src="./images/IMG_9465.JPG" alt="">
+                            <img src="{{story.img.url}}" alt="story image">
                             <h3>{{story.title}}</h3>
                             <p>{{story.post}}</p>
                         </div>
@@ -29,20 +24,7 @@
                                 <button>Post</button>
                             </form>
                         </div>
-                        <!-- <div class="">
-                            <form action="" method="post" enctype="multipart/form-data">
-                                {% csrf_token  %}
-                                {% for field in create_Post %}
-                                <div class="form__group">
-                                  <label for="profile_pic">{{field.label}}</label>
-                                  {{field}}
-                                </div>
-                                {% endfor %}
-                                {{create_Post.as_p}}
-                                <button class="btn btn-outline-dark">Post</button>
-                            </form>
-                        </div> -->
-                        <p class="comment-btn" style="margin-top: 40px; color:grey;">{{count}} comments</p>
+                        <!-- <p class="comment-btn" style="margin-top: 40px; color:grey;">{{count}} comments</p> -->
                         <div class="comment">
                             {% for comment in comments %}
                             <h4>{{comment.user}}</h4>

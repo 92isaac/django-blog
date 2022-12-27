@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect, get_object_or_404
-# from django.http import HttpResponse
+from django.http import HttpResponse, Http404
 from django.contrib.auth import authenticate, login, logout
 from .form import Create_PostForm, Create_PostForm, Comment_PostForm
 from .models import Story, Comment
@@ -25,23 +25,17 @@ def home(request):
 def profile(request, pk):
     story_id = Story.objects.get(id=pk)
     comment = Comment.objects.filter(story=story_id)
-    count = comment.count()
-    create_Post = Create_PostForm()
     create_comment = Comment_PostForm()
-    
-    if request.method == 'POST':
-        post = Create_PostForm(request.POST)
-        if post.is_valid():
-            post.save()
-            return redirect('profile/<str:pk>')
+    count = comment.count()
         
     if request.method == 'POST':
-        make_comment =Comment_PostForm(request.POST)
-        if make_comment.is_valid():
-            make_comment.save()
+        create_comment =Comment_PostForm(request.POST)
+        if create_comment.is_valid():
+            create_comment.save(commit=False)
+            # create_comment.save()
             return redirect('home')
         
-    context ={'story': story_id, 'comments': comment, 'count': count, 'create_post':create_Post, 'create_comment':create_comment}
+    context ={'story': story_id, 'comments': comment, 'count': count, 'create_comment':create_comment}
     return render(request, 'blog/read_story.html', context)
 
 

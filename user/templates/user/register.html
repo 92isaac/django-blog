@@ -7,11 +7,12 @@
         {% csrf_token  %}
         {% for field in register_form %}
         <div class="form__group">
-          <label for="profile_pic">{{field.label}}</label>
+          <label for="profile_pic" class="register">{{field.label}}</label>
+          <p style="margin-bottom: 0px; color:red; font-size: 10px; font-style: italic;">Field is require</p>
           {{field}}
         </div>
         {% endfor %}
-        {{register_form.as_p}}
+        <!-- {{register_form.as_p}} -->
         <button>Register</button>
     </form>
 </div>
