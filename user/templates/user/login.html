@@ -1,0 +1,18 @@
+{% extends 'index.html' %}
+{% block content %}
+
+<div class="col-md-6 mx-auto">
+    <form method="POST" class="post" enctype="multipart/form-data">
+        {% csrf_token  %}
+        {% for field in form %}
+        <div class="form__group">
+          <label for="profile_pic" class="register">{{field.label}}</label>
+          <p style="margin-bottom: 0px; color:red; font-size: 10px; font-style: italic;">Field is require</p>
+          {{field}}
+        </div>
+        {% endfor %}
+        <!-- {{register_form.as_p}} -->
+        <button>Register</button>
+    </form>
+</div>
+{% endblock %}
