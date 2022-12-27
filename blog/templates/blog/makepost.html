@@ -2,12 +2,12 @@
 {% load static %}
 {% block content %}
 
-<div class="wrapper body " style="min-height: 100vh;">
+<div class="make-post">
     <form action="" method="post" class="post" enctype="multipart/form-data">
         {% csrf_token  %}
         {% for field in post %}
-        <div class="form__group">
-          <label for="profile_pic">{{field.label}}</label>
+        <div class="input-group">
+          <label for="form-label">{{field.label}}</label>
           {{field}}
         </div>
         {% endfor %}

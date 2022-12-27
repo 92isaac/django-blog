@@ -31,7 +31,7 @@ class Story(models.Model):
 
 
 class Comment(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
     story = models.ForeignKey(Story, on_delete=models.CASCADE)
     body = models.TextField()
     date_created = models.DateTimeField(auto_now_add=True)
