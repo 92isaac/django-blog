@@ -8,7 +8,7 @@ from django.contrib.auth.models import AbstractUser
 class Story(models.Model):
     author = models.ForeignKey(User, on_delete=models.CASCADE)
     title = models.CharField(max_length=255, blank=False)
-    img = models.ImageField(default='default.png', upload_to='blogpost_img')
+    img = models.ImageField(default='/media/default.png', upload_to='blogpost_img')
     politics = 'politics'
     tech = 'tech'
     religion = 'religion'
