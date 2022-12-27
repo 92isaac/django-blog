@@ -1,45 +1,41 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django.contrib.auth.models import AbstractUser
 
 # Create your models here.
 
 
-# class Category(models.Model):
-#     name = models.CharField(max_length=255, blank=False, null=True)
-
-#     def __str__(self):
-#         return self.name
-    
-
-
 class Story(models.Model):
-    author = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
+    author = models.ForeignKey(User, on_delete=models.CASCADE)
     title = models.CharField(max_length=255, blank=False)
-    # img
-    politices = "politices"
-    sport = "sport"
-    christain ='christain'
-    tech ='tech'
-    others = "others"
-    category_choices = [(christain, 'christain'), (sport, 'sport'), (politices, 'politics'),(tech, 'tech'), (others, 'others')]
-    category = models.CharField(max_length=10, choices=category_choices, default=christain)
+    img = models.ImageField(default='default.png', upload_to='blogpost_img')
+    politics = 'politics'
+    tech = 'tech'
+    religion = 'religion'
+    sport = 'sport'
+    other = 'other'
+    category_choices = [(politics, 'politics'), (tech, 'tech'), (religion, 'religion'), (sport, 'sport'), (other, 'other')]
+    category =models.CharField(max_length=10, choices=category_choices, default=other)
     post = models.TextField(max_length=5000, null=False)
     date_created = models.DateTimeField(auto_now_add=True)
     date_updated = models.DateTimeField(auto_now=True)
-    # id = models.IntegerField(auto_created=True, primary_key=True)
+
+
+    class Meta:
+        ordering = ['-date_updated', '-date_created']
 
 
     def __str__(self):
         return self.title
     
 
+
 class Comment(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
-    story = models.ForeignKey(Story, on_delete=models.CASCADE, null=True)
-    body =models.TextField()
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    story = models.ForeignKey(Story, on_delete=models.CASCADE)
+    body = models.TextField()
     date_created = models.DateTimeField(auto_now_add=True)
     date_updated = models.DateTimeField(auto_now=True)
-
 
     def __str__(self):
         return self.body[0:50]

@@ -1,8 +1,13 @@
 from django.forms import ModelForm
-from .models import Story
+from .models import Story, Comment
 
-class Create_Story(ModelForm):
-    
+
+class Create_PostForm(ModelForm):
     class Meta:
         model = Story
-        fields = '__all__'
+        fields = ['title','category','post', 'author']
+
+class Comment_PostForm(ModelForm):
+    class Meta:
+        model = Comment
+        fields = ['body']
