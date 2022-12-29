@@ -31,8 +31,8 @@ def profile(request, pk):
     if request.method == 'POST':
         create_comment =Comment_PostForm(request.POST)
         if create_comment.is_valid():
-            create_comment.save(commit=False)
-            # create_comment.save()
+            # create_comment.save(commit=False)
+            create_comment.save()
             return redirect('home')
         
     context ={'story': story_id, 'comments': comment, 'count': count, 'create_comment':create_comment}
